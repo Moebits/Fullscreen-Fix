@@ -1,0 +1,29 @@
+{
+	"geode": "4.7.0",
+	"gd": {
+		"mac": "2.2074"
+	},
+	"id": "moebits.fullscreen-fix",
+	"name": "Fullscreen Fix",
+	"version": "v0.0.1",
+	"developer": "Moebits",
+	"description": "Fullscreen mode fix for macOS",
+	"tags": ["offline", "bugfix"],
+	"links": {
+		"source": "https://github.com/Moebits/Fullscreen-Fix"
+	},
+	"settings": {
+		"shift-offset": {
+			"type": "int",
+			"name": "Shift Offset",
+			"default": 37,
+			"requires-restart": true
+		},
+		"borderless": {
+			"type": "bool",
+			"name": "Borderless",
+			"default": false,
+			"requires-restart": true
+		}
+	}
+}
