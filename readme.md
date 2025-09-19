@@ -1,4 +1,4 @@
-# Fullscreen Fix
+# Fullscreen Notch Fix
 
 Fixes the fullscreen mode in geometry dash on macOS. The regular fullscreen mode is broken and doesn't account for 
 the menu bar / notch, cutting off the top part of the game which contains useful info like the progress bar.

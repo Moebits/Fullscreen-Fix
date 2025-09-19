@@ -1,5 +1,18 @@
 #import <Cocoa/Cocoa.h>
-#import "FullscreenFix.hpp"
+#include "FullscreenFix.hpp"
+
+auto notchHeight() -> CGFloat {
+    NSWindow* window = [NSApp mainWindow];
+    if (!window) return 0;
+
+    NSScreen* screen = [window screen];
+    if (!screen) return 0;
+
+    if (@available(macOS 12.0, *)) {
+        return screen.safeAreaInsets.top;
+    }
+    return 0;
+}
 
 auto shiftWindow() -> void {
     NSWindow* window = [NSApp mainWindow];
@@ -10,7 +23,7 @@ auto shiftWindow() -> void {
 
     NSRect rect = [content frame];
     bool fullscreen = window.styleMask & NSWindowStyleMaskFullScreen;
-    CGFloat offset = fullscreen ? Mod::get()->getSettingValue<int64_t>("shift-offset") : 0;
+    CGFloat offset = fullscreen ? notchHeight() + Mod::get()->getSettingValue<int64_t>("shift-offset") : 0;
 
     if (fullscreen && Mod::get()->getSettingValue<bool>("borderless")) {
         offset = 0;

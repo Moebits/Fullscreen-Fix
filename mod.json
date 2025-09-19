@@ -1,13 +1,13 @@
 {
-	"geode": "4.7.0",
+	"geode": "4.8.0",
 	"gd": {
 		"mac": "2.2074"
 	},
 	"id": "moebits.fullscreen-fix",
-	"name": "Fullscreen Fix",
-	"version": "v0.0.1",
+	"name": "Fullscreen Notch Fix",
+	"version": "v0.0.2",
 	"developer": "Moebits",
-	"description": "Fullscreen mode fix for macOS",
+	"description": "Fullscreen mode notch fix for macOS",
 	"tags": ["offline", "bugfix"],
 	"links": {
 		"source": "https://github.com/Moebits/Fullscreen-Fix"
@@ -16,7 +16,7 @@
 		"shift-offset": {
 			"type": "int",
 			"name": "Shift Offset",
-			"default": 37,
+			"default": 0,
 			"requires-restart": true
 		},
 		"borderless": {
