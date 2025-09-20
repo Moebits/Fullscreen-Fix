@@ -12,7 +12,7 @@ endif()
 
 set(CMAKE_CXX_VISIBILITY_PRESET hidden)
 
-project(FullscreenFix VERSION 0.0.2)
+project(FullscreenFix VERSION 0.0.3)
 
 file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS hooks/*.cpp hooks/*.mm structures/*.cpp)
 

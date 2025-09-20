@@ -1,5 +1,8 @@
 #import <Cocoa/Cocoa.h>
-#include "FullscreenFix.hpp"
+#import <objc/runtime.h>
+#import <Geode/Geode.hpp>
+
+using namespace geode::prelude;
 
 auto notchHeight() -> CGFloat {
     NSWindow* window = [NSApp mainWindow];
@@ -50,4 +53,31 @@ auto fullscreenListener() -> void {
      object:nil queue:nil usingBlock:^(NSNotification* notif) {
         shiftWindow();
     }];
+}
+
+@implementation NSObject(ModifyAppController)
+    -(void) AppController_toggleFullScreen: (BOOL)fullscreen {
+        NSWindow* window = [NSApp mainWindow];
+        if (!window) return;
+
+        if (!fullscreen && Mod::get()->getSettingValue<bool>("borderless")) {
+            [window setStyleMask:(NSWindowStyleMaskTitled | NSWindowStyleMaskResizable |
+             NSWindowStyleMaskClosable | NSWindowStyleMaskMiniaturizable)];
+            [window setCollectionBehavior:NSWindowCollectionBehaviorDefault];
+            [window setLevel:NSNormalWindowLevel];
+            [window setFrame:[[NSScreen mainScreen] visibleFrame] display:YES animate:NO];
+        }
+
+        [self AppController_toggleFullScreen:fullscreen];
+    }
+@end
+
+$execute {
+    fullscreenListener();
+    auto appController = objc_getClass("AppController");
+    Method original, hook;
+
+    original = class_getInstanceMethod(appController, @selector(toggleFullScreen:));
+    hook = class_getInstanceMethod([NSObject class], @selector(AppController_toggleFullScreen:));
+    method_exchangeImplementations(original, hook);
 }

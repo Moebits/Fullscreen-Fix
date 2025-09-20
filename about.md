@@ -9,5 +9,4 @@ You can switch between regular and borderless fullscreen modes in the settings.
 
 - Some of the bottom is cutoff in regular fullscreen, but y-scaling the game scene appears to break triggers.
 
-- You can't switch between borderless fullscreen and windowed mode in the game settings without restarting as 
-there is a black screen.
+- Switching from borderless fullscreen to windowed mode doesn't move it back to the desktop space.

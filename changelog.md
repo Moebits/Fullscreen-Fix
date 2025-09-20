@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.0.3
+
+- Switching to windowed from borderless is less broken
+
 ## v0.0.2
 
 - Query the notch height from the system
